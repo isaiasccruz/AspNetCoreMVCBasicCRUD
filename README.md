@@ -12,7 +12,7 @@ A persistencia de dados da aplicação foi desenvolvida para MSSql e existe um s
 
 A validação de senha é construida na logica da Classe **Criptografia.cs** em **Infra.UtilsCore**
 
-A senha inicial do script do banco de dados é uma string já criptografada para **"123456"**
+A senha inicial do script do banco de dados é uma string já criptografada para uma senha: **"zaza"**
 
 Os dados de connection strings estão na classe: **DapperContexto.cs** no projeto: **Infra.ContextoCore** onde a classe retorna do arquivo de configuração **Infra.ContextoCore.dll.config** que fica na pasta **ConfigFile da solution**
 
