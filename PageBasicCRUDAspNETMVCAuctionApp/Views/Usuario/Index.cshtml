@@ -1,0 +1,52 @@
+﻿@using BasicCRUDAspNETMVCAuctionApp.Controllers;
+@model IEnumerable<Dominio.Entidades.Usuario>
+
+@{
+    ViewData["Title"] = "Gerenciador de Leiões";
+}
+
+
+<h2>Usuários</h2>
+
+
+<p>
+    <a asp-action="CriarNovoUsuario" asp-controller="Usuario">
+        <button type="button" class="btn bg-dark border-0 btn-sm btn-primary col-2">Criar novo Usuário</button>
+    </a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Id)</th>
+            <th>@Html.DisplayNameFor(model => model.Nome)</th>
+            <th>@Html.DisplayNameFor(model => model.Login)</th>
+            <th>@Html.DisplayNameFor(model => model.IdPerfil)</th>
+            <th>@Html.DisplayNameFor(model => model.Ativo)</th>
+            <th>@Html.DisplayNameFor(model => model.Logado)</th>
+            <th>@Html.DisplayNameFor(model => model.UltimaConexao)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                <td>@Html.DisplayFor(modelItem => item.Login)</td>
+                <td>@Html.DisplayFor(modelItem => item.IdPerfil)</td>
+                <td>@Html.DisplayFor(modelItem => item.Ativo)</td>
+                <td>@Html.DisplayFor(modelItem => item.Logado)</td>
+                <td>@Html.DisplayFor(modelItem => item.UltimaConexao)</td>
+                <td>
+                    @Html.ActionLink("Editar", "EditarUsuario", new { id = item.Id })
+                    @if (LoginController.idPerfilUsuario == 1)//Admin
+                    {
+                        <label> | </label>
+                        @Html.ActionLink("Deletar", "DeletarUsuario", new { id = item.Id }, new { onclick = "return confirm(' Tem certeza que quer deletar este Leilão?');" })
+
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,72 @@
+﻿@model LeilaoModel
+@{
+    ViewBag.Title = "Editar Leilão";
+}
+
+<h1>Editar Leilão</h1>
+<hr />
+
+@using (Html.BeginForm("EditarLeilao", "GerenciadorDeLeiloes", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.IdUsuarioResponsavel)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.NomeLeilao, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.NomeLeilao, new { @class="form-control" , @readonly="readonly" })
+            @Html.ValidationMessageFor(m => m.NomeLeilao, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.EstadoDoItem, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.EstadoDoItem, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.EstadoDoItem, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ValorInicial, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.ValorInicial, new { @class = "form-control", @readonly="readonly" })
+            @Html.ValidationMessageFor(m => m.ValorInicial, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ValorFinal, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.ValorFinal, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.ValorFinal, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.DataAbertura, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.DataAbertura, new { @class = "form-control", @readonly="readonly" })
+            @Html.ValidationMessageFor(m => m.DataAbertura, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.DataFechamento, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.DataFechamento, new { type = "Date", @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.DataFechamento, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Salvar alterações" class="btn btn-success" />
+            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-danger" })
+        </div>
+    </div>
+</div>
+}

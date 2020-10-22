@@ -1,0 +1,60 @@
+﻿@using Aplicacao.Interfaces;
+@using Dominio.Interfaces.InjecaoDependencia;
+@model UsuarioModel
+
+
+@{
+    ViewData["Title"] = "Criar Novo Usuário";
+}
+
+<h1>Novo Leilão</h1>
+
+<hr />
+@using (Html.BeginForm("CriarNovoUsuario", "Usuario", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.LabelFor(m => m.Login, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Login,
+                                   new { @class = "form-control", @placeholder = "Login do Usuário" })
+                @Html.ValidationMessageFor(m => m.Login, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Nome, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Nome,
+                                   new { @class = "form-control", @placeholder = "Nome do usuário" })
+                @Html.ValidationMessageFor(m => m.Nome, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Senha, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(m => m.Senha,
+                                   new { @class = "password", @placeholder = "Valor Inicial" })
+                @Html.ValidationMessageFor(m => m.Senha, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.DropDownList("IdPerfil", ViewBag.Perfil as SelectList)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Ativo, new { @class = "control-label col-md-1" })
+            @Html.EditorFor(m => m.Ativo, new { type = "form-group", @class = "form-group" })
+            @Html.ValidationMessageFor(m => m.Ativo, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-success" type="submit">Salvar Usuário</button>
+                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-danger" })
+            </div>
+        </div>
+    </div>
+}
+<div>
+</div>

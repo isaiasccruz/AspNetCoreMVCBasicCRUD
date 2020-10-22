@@ -1,0 +1,51 @@
+﻿@model LoginModel
+
+@{
+    ViewData["Title"] = "Login - Gerenciador de Leilões";
+}
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="form-group col text-center">
+    <h1 class="display-6">Forneça os dados de Login</h1>
+    <div class="hr-line-dashed"></div>
+        <form asp-action="Login" enctype="multipart/form-data">
+            <div class="input-group">
+                <label class="col-form-label col-sm-2">Usuário:</label>
+                <input class="form-control col-sm-4" asp-for="Usuario">
+                <span class="text-danger text-left col-sm-4" asp-validation-for="Usuario"></span>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="input-group">
+                <label class="col-form-label col-sm-2">Senha:</label>
+                <input class="form-control col-sm-4" type="password" asp-for="Senha">
+                <span class="text-danger text-left col-sm-4" asp-validation-for="Senha"></span>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="form-group row">
+                <div class="col text-center">
+                    <input onsubmit=" return false" onclick="@Url.Action("Login", "Login")" type="submit" value="Login" class="btn bg-success border-0 btn-sm btn-primary col-2" />
+                </div>
+            </div>
+        </form>
+</div>
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+}
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.ErrorMessage");
+            };
+    </script>
+}

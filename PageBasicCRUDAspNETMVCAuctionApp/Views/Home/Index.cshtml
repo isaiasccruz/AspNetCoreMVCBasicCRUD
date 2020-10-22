@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Gerenciador de Leilões";
+}
+
+@{
+    Layout = "_Layout";
+}
+
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+}
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.ErrorMessage");
+            };
+    </script>
+}

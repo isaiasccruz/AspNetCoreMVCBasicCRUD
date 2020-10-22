@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  pagebasiccrudaspnetmvcauctionapp:
+    image: ${DOCKER_REGISTRY}pagebasiccrudaspnetmvcauctionapp
+    build:
+      context: .
+      dockerfile: PageBasicCRUDAspNETMVCAuctionApp/Dockerfile

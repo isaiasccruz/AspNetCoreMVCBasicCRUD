@@ -1,0 +1,63 @@
+﻿@using Dominio.Entidades;
+@model UsuarioModel
+@{
+    ViewBag.Title = "Editar Usuário";
+}
+
+<h1>Editar Leilão</h1>
+<hr />
+
+@using (Html.BeginForm("EditarUsuario", "Usuario", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    @Html.HiddenFor(m => m.Id)
+
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.LabelFor(m => m.Login, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Login, new { @class = "form-control", @readonly = "readonly", @placeholder = "Login do Usuário" })
+                @Html.ValidationMessageFor(m => m.Login, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Nome, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Nome, new { @class = "form-control", @readonly = "readonly", @placeholder = "Login do Usuário" })
+                @Html.ValidationMessageFor(m => m.Nome, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Senha, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.Senha,
+                                   new { @class = "control-label col-md-2", value = Model.Senha })
+                @Html.ValidationMessageFor(m => m.Senha, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.IdPerfil, new SelectList(Model.Perfis,"Id","DescPerfil"), new {@class="ComboWidth"})
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Ativo, new { @class = "control-label col-md-1" })
+            @Html.EditorFor(m => m.Ativo, new { type = "form-group", @class = "form-group" })
+            @Html.ValidationMessageFor(m => m.Ativo, "", new { @class = "text-danger" })
+        </div>
+        
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Salvar alterações" class="btn btn-success" />
+            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-danger" })
+        </div>
+    </div>
+</div>
+}

@@ -1,0 +1,53 @@
+﻿@using BasicCRUDAspNETMVCAuctionApp.Controllers;
+@model IEnumerable<Dominio.Entidades.Leilao>
+
+@{
+    ViewData["Title"] = "Gerenciador de Leiões";
+}
+
+
+<h2>Leilões</h2>
+
+    <p>
+        <a asp-action="CriarNovoLeilao" asp-controller="GerenciadorDeLeiloes">
+            <button type="button" class="btn bg-dark border-0 btn-sm btn-primary col-2">Criar novo Leilão</button>
+        </a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Id)</th>
+                <th>@Html.DisplayNameFor(model => model.IdUsuarioResponsavel)</th>
+                <th>@Html.DisplayNameFor(model => model.NomeLeilao) </th>
+                <th>@Html.DisplayNameFor(model => model.ValorInicial)</th>
+                <th>@Html.DisplayNameFor(model => model.ValorFinal)</th>
+                <th>@Html.DisplayNameFor(model => model.EstadoDoItem)</th>
+                <th>@Html.DisplayNameFor(model => model.DataAbertura)</th>
+                <th>@Html.DisplayNameFor(model => model.DataFechamento)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                    <td>@Html.DisplayFor(modelItem => item.IdUsuarioResponsavel)</td>
+                    <td>@Html.DisplayFor(modelItem => item.NomeLeilao)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ValorInicial)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ValorFinal)</td>
+                    <td>@Html.DisplayFor(modelItem => item.EstadoDoItem)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DataAbertura)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DataFechamento)</td>
+                    <td>
+                        @Html.ActionLink("Editar", "EditarLeilao", new { id = item.Id })
+                        @if (LoginController.idPerfilUsuario == 1)//Admin
+                        {
+                            <label> | </label>
+                            @Html.ActionLink("Deletar", "DeletarLeilao", new { id = item.Id }, new { onclick = "return confirm(' Tem certeza que quer deletar este Leilão?');" })
+
+                        }                        
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

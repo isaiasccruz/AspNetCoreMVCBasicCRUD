@@ -1,0 +1,63 @@
+﻿@model LeilaoModel
+
+
+@{
+    ViewData["Title"] = "Criar Novo Leilão";
+}
+
+<h1>Novo Leilão</h1>
+
+<hr />
+@using (Html.BeginForm("CriarNovoLeilao", "GerenciadorDeLeiloes", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+<div class="form-horizontal">
+    <div class="form-group">
+        @Html.LabelFor(m => m.NomeLeilao, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.NomeLeilao,
+                               new { @class = "form-control", @placeholder = "Nome do Leilao" })
+            @Html.ValidationMessageFor(m => m.NomeLeilao, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.EstadoDoItem, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.EstadoDoItem,
+                               new { @class = "form-control", @placeholder = "Estado do Leilão" })
+            @Html.ValidationMessageFor(m => m.EstadoDoItem, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ValorInicial, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.ValorInicial,
+                               new { @class = "currency", @placeholder = "Valor Inicial" })
+            @Html.ValidationMessageFor(m => m.ValorInicial, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ValorFinal, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.ValorFinal,
+                               new { @class = "currency", @placeholder = "Valor Inicial" })
+            @Html.ValidationMessageFor(m => m.ValorFinal, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.DataAbertura, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.DataAbertura, new { type = "Date", @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.DataAbertura, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+        <button class="btn btn-success" type="submit">Salvar Leilão</button>
+        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-danger" })
+        </div>
+    </div>
+</div>
+}
+<div>
+</div>
