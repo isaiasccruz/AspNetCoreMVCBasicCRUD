@@ -31,3 +31,5 @@ Successfully tagged pagetest:v1
 ~~~
 
 O projeto todo foi desenvolvido no VisualStudio 2017.
+
+Para rodar o projeto caso não seja feito via deploy, voce pode publicar no modo tradicional em um Windows Server com IIS ou apenas rodar a aplicação em Debug no VisualStudio
